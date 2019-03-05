@@ -7,7 +7,7 @@ To run locally, (XAMPP, MAMMP etc)
 
 2 - Make your your server is running, in my case, XAMPP.
 
-3 - Place the root folder in HTDocs folder or appropriate equivalent
+3 - Place the root folder 'parkingApp' in 'HTDocs' folder or appropriate equivalent.
 
 4 - Navigate to the webpage using http://localhost/parkingApp/public
 
