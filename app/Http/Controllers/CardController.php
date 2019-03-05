@@ -42,9 +42,9 @@ class CardController extends Controller
     {
         $request -> validate ([
             'name' => 'required|max:191',
-            'address' => 'required|alpha_num|min:0',
+            'address' => 'required|max:191',
             'card_number' => 'required|integer',
-            'ex_date' => 'required|date',
+            'ex_date' => 'required|string',
             'cvv' => 'required|cvc',
 
             ]);

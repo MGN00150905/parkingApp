@@ -9,6 +9,16 @@ use App\Car;
 class CarController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,7 +50,7 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request -> validate ([
-            'reg' => 'required|alpha_num|min:0',
+            'reg' => 'required|string|max:10',
 
             ]);
 
@@ -93,7 +103,7 @@ class CarController extends Controller
 
 
         $request -> validate ([
-            'reg' => 'required|alpha_num|min:0',
+            'reg' => 'required|string|min:0',
             ]);
 
             

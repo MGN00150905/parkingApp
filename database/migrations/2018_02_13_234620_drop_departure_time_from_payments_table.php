@@ -25,7 +25,7 @@ class DropDepartureTimeFromPaymentsTable extends Migration
     {
         Schema::table('payments', function (Blueprint $table) {
             
-            $table->time('departure_time');
+            $table->dropColumn('departure_time');
         });
     }
 }

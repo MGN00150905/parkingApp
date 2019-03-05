@@ -25,8 +25,7 @@ class AddNumHoursToPaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('payments', function (Blueprint $table) {
-            
+        Schema::table('payments', function (Blueprint $table) {            
             $table->dropColumn('num_hours');
         });
     }

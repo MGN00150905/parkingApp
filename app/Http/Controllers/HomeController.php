@@ -26,9 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $payments = Payment::all(); 
+
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('home')->with('cars', $user -> cars);
+        return view('home', [
+            'payments' => $payments
+            ])->with('cars', $user -> cars);
 
        
     }

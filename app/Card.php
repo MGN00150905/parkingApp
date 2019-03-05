@@ -9,5 +9,10 @@ class Card extends Model
         public function user(){
     	return $this->belongsTo('App\User');
     }
-    	public $timestamps = false;
+
+    	public function payments(){
+    	return $this->hasMany('App\Payment');
+    }
+
+    	
 }

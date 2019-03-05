@@ -14,9 +14,9 @@
         <style>
             html, body {
                 background-color: #483E3C;
-                color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
+                color:#f4f3ed;
                 height: 100vh;
                 margin: 0;
             }
@@ -41,6 +41,12 @@
                 top: 18px;
             }
 
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -50,7 +56,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color:#f4f3ed;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -63,6 +69,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        {!!$map['js']!!}
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -76,19 +83,29 @@
                     @endauth
                 </div>
             @endif
+<!--             Only show the checkout link if the user is logged in 
+            (Quicker way for the user to navigate back to payment page after looking at map) -->
+            @if (Route::has('login'))
+                <div class="top-left links">
+                    @auth
+                        <a href="{{ url('/payments') }}">Checkout</a>
+                    @else
+                    @endauth
+                </div>
+            @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    PARKLE
+<!--                    Making sure the maps are only visable on welcome.php if the user is logged in
+ -->                    PARKLE
+                    @if (Route::has('login'))
+                    @auth
+                    {!!$map['html']!!}
+                    @else
+                    @endauth
+                    @endif
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
         </div>
     </body>

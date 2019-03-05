@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Payment;
 use App\Car;
 use App\Park;
 use App\User;
-use App\Payment;
 use App\Card;
 
 class PaymentController extends Controller
 {
-
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,12 +23,19 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $cars = Car::all(); 
+        $cars  = Car::all(); 
         $parks = Park::all(); 
         $cards = Card::all();
 
+
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+
+        // $car_id = auth()->car()->id;
+        // $car = Car::find($car_id);
+
+        // $car_reg = auth()->car()->reg;
+        // $car = Car::find($car_reg);
         return view('payments.index', [
             'cars' => $cars,
             'parks' => $parks,
@@ -47,7 +52,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        
+        return view('payments.index');
     }
 
     /**
@@ -58,7 +63,22 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $payment = new Payment();
+            $payment -> car_id =  $request->input('car');
+            $payment -> park_id = $request->input('park');
+            $payment -> amount = $request -> input('amount');
+            $payment -> departure = $request -> input('departure');
+            $payment -> card_id = $request->input('card');
+            
+            $payment -> save();
+
+
+
+
+            $session = $request->session()->flash('message', 'PAYMENT SUSSECCFUL');
+
+            return redirect()->route('home');
     }
 
     /**
@@ -103,6 +123,12 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = Payment::findOrFail($id); 
+
+        $payment -> delete();
+
+        Session::flash('message', 'Payment finished');
+
+            return redirect()->route('home');
     }
 }
