@@ -1,7 +1,8 @@
 # PARKLE - A simiple Parking app developed using PHP framework - Laravel
 
+* Heroku link - https://parkle-application.herokuapp.com/ (May not work properly. Currently fixing heroku HTTP issues)
 
-To run locally, (XAMPP, MAMMP etc)
+* To run locally, (XAMPP, MAMMP etc)
 
 1 - Clone the repo.
 
